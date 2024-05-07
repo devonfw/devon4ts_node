@@ -14,9 +14,6 @@
     ],
     "sharedGlobals": []
   },
-  "affected": {
-    "defaultBase": "develop"
-  },
   "targetDefaults": {
     "@nx/js:swc": {
       "cache": true,
@@ -37,5 +34,6 @@
         "targetName": "test"
       }
     }
-  ]
+  ],
+  "defaultBase": "develop"
 }
