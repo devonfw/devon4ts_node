@@ -138,8 +138,8 @@ exports[`convict generator root files should update tsconfig.base.json 1`] = `
 "{
   "compilerOptions": {
     "paths": {
-      "@proj/shared/config": ["packages/nx-nest/libs/shared/config/src/index.ts"],
-      "@proj/shared/logger": ["packages/nx-nest/libs/shared/logger/src/index.ts"]
+      "@proj/shared/config": ["libs/shared/config/src/index.ts"],
+      "@proj/shared/logger": ["libs/shared/logger/src/index.ts"]
     },
     "strictNullChecks": true,
     "noImplicitAny": true,

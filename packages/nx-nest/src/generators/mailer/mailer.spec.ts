@@ -26,18 +26,12 @@ describe('mailer generator', () => {
     });
 
     it('should generate the template files', () => {
-      expect(
-        tree.exists(`packages/nx-nest/apps/${options.projectName}/src/assets/templates/partials/layout.handlebars`),
-      ).toBeTruthy();
-      expect(
-        tree.exists(`packages/nx-nest/apps/${options.projectName}/src/assets/templates/views/example.handlebars`),
-      ).toBeTruthy();
+      expect(tree.exists(`/apps/${options.projectName}/src/assets/templates/partials/layout.handlebars`)).toBeTruthy();
+      expect(tree.exists(`/apps/${options.projectName}/src/assets/templates/views/example.handlebars`)).toBeTruthy();
     });
 
     it('should add MailerModule to core.module', async () => {
-      const fileContent = tree
-        .read(`./packages/nx-nest/apps/${options.projectName}/src/app/core/core.module.ts`)
-        ?.toString('utf-8');
+      const fileContent = tree.read(`.//apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8');
 
       expect(fileContent).toMatchSnapshot();
     });
@@ -75,32 +69,24 @@ services:
     });
 
     it('should generate the template files', () => {
-      expect(
-        tree.exists(`packages/nx-nest/apps/${options.projectName}/src/assets/templates/partials/layout.handlebars`),
-      ).toBeTruthy();
-      expect(
-        tree.exists(`packages/nx-nest/apps/${options.projectName}/src/assets/templates/views/example.handlebars`),
-      ).toBeTruthy();
+      expect(tree.exists(`/apps/${options.projectName}/src/assets/templates/partials/layout.handlebars`)).toBeTruthy();
+      expect(tree.exists(`/apps/${options.projectName}/src/assets/templates/views/example.handlebars`)).toBeTruthy();
     });
 
     it('should add MailerModule to core.module', async () => {
-      const fileContent = tree
-        .read(`./packages/nx-nest/apps/${options.projectName}/src/app/core/core.module.ts`)
-        ?.toString('utf-8');
+      const fileContent = tree.read(`.//apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8');
       expect(fileContent).toContain('MailerModule');
       expect(fileContent).toMatchSnapshot();
     });
 
     it('should add mailer configuration src/app/shared/app-config.ts', async () => {
-      const fileContent = tree
-        .read(`./packages/nx-nest/apps/${options.projectName}/src/app/app-config.ts`)
-        ?.toString('utf-8');
+      const fileContent = tree.read(`.//apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8');
       expect(fileContent).toContain('mailer');
       expect(fileContent).toMatchSnapshot();
     });
 
     it('should add mailer configuration src/config.ts', async () => {
-      const fileContent = tree.read(`./packages/nx-nest/apps/${options.projectName}/src/config.ts`)?.toString('utf-8');
+      const fileContent = tree.read(`.//apps/${options.projectName}/src/config.ts`)?.toString('utf-8');
       expect(fileContent).toContain('mailer');
       expect(fileContent).toMatchSnapshot();
     });

@@ -43,7 +43,7 @@ describe('init-orm generator', () => {
       it('should run successfully', async () => {
         await initOrmGenerator(tree, options);
         const appConfig = readProjectConfiguration(tree, options.projectName);
-        expect(tree.exists(`./packages/nx-nest/apps/${options.projectName}/src/app/app-config.ts`)).toBeFalsy();
+        expect(tree.exists(`/apps/${options.projectName}/src/app/app-config.ts`)).toBeFalsy();
         expect(appConfig).toBeDefined();
       });
 
@@ -56,56 +56,56 @@ describe('init-orm generator', () => {
       it('should update the core.module with mysql configuration', async () => {
         await initOrmGenerator(tree, options);
         expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
+          tree.read(`/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
         ).toMatchSnapshot();
       });
 
       it('should update the core.module with mariadb configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'mariadb' });
         expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
+          tree.read(`/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
         ).toMatchSnapshot();
       });
 
       it('should update the core.module with sqlite configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'sqlite' });
         expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
+          tree.read(`/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
         ).toMatchSnapshot();
       });
 
       it('should update the core.module with postgres configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'postgres' });
         expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
+          tree.read(`/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
         ).toMatchSnapshot();
       });
 
       it('should update the core.module with cockroachdb configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'cockroachdb' });
         expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
+          tree.read(`/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
         ).toMatchSnapshot();
       });
 
       it('should update the core.module with mssql configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'mssql' });
         expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
+          tree.read(`/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
         ).toMatchSnapshot();
       });
 
       it('should update the core.module with oracle configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'oracle' });
         expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
+          tree.read(`/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
         ).toMatchSnapshot();
       });
 
       it('should update the core.module with mongodb configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'mongodb' });
         expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
+          tree.read(`/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
         ).toMatchSnapshot();
       });
     });
@@ -134,88 +134,56 @@ describe('init-orm generator', () => {
       it('should update the core.module with async typeorm configuration', async () => {
         await initOrmGenerator(tree, options);
         expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
+          tree.read(`/apps/${options.projectName}/src/app/core/core.module.ts`)?.toString('utf-8'),
         ).toMatchSnapshot();
       });
 
       it('should update the config files with mysql configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'mysql' });
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/config.ts`)?.toString('utf-8')).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8')).toMatchSnapshot();
       });
 
       it('should update the config files with mariadb configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'mariadb' });
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/config.ts`)?.toString('utf-8')).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8')).toMatchSnapshot();
       });
 
       it('should update the config files with sqlite configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'sqlite' });
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/config.ts`)?.toString('utf-8')).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8')).toMatchSnapshot();
       });
 
       it('should update the config files with postgres configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'postgres' });
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/config.ts`)?.toString('utf-8')).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8')).toMatchSnapshot();
       });
 
       it('should update the config files with cockroachdb configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'cockroachdb' });
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/config.ts`)?.toString('utf-8')).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8')).toMatchSnapshot();
       });
 
       it('should update the config files with mssql configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'mssql' });
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/config.ts`)?.toString('utf-8')).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8')).toMatchSnapshot();
       });
 
       it('should update the config files with oracle configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'oracle' });
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/config.ts`)?.toString('utf-8')).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8')).toMatchSnapshot();
       });
 
       it('should update the config files with mongodb configuration', async () => {
         await initOrmGenerator(tree, { ...options, db: 'mongodb' });
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
-        expect(
-          tree.read(`./packages/nx-nest/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8'),
-        ).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/config.ts`)?.toString('utf-8')).toMatchSnapshot();
+        expect(tree.read(`/apps/${options.projectName}/src/app/app-config.ts`)?.toString('utf-8')).toMatchSnapshot();
       });
     });
   });

@@ -17,6 +17,12 @@
     "publish": {
       "command": "node tools/scripts/publish.mjs mailer {args.ver} {args.tag}",
       "dependsOn": ["build"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "packages/mailer/jest.config.ts"
+      }
     }
   },
   "tags": []

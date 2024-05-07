@@ -35,16 +35,14 @@ describe('auth-jwt generator', () => {
   });
 
   it('should create test files and core modules', async () => {
-    expect(tree.exists(`./packages/nx-nest/apps/${options.name}/test/auth/auth.service.mock.ts`)).toBeTruthy();
-    expect(tree.exists(`./packages/nx-nest/apps/${options.name}/test/user/user.repository.mock.ts`)).toBeTruthy();
-    expect(tree.exists(`./packages/nx-nest/apps/${options.name}/src/app/core/auth/auth.module.ts`)).toBeTruthy();
-    expect(tree.exists(`./packages/nx-nest/apps/${options.name}/src/app/core/user/user.module.ts`)).toBeTruthy();
+    expect(tree.exists(`/apps/${options.name}/test/auth/auth.service.mock.ts`)).toBeTruthy();
+    expect(tree.exists(`/apps/${options.name}/test/user/user.repository.mock.ts`)).toBeTruthy();
+    expect(tree.exists(`/apps/${options.name}/src/app/core/auth/auth.module.ts`)).toBeTruthy();
+    expect(tree.exists(`/apps/${options.name}/src/app/core/user/user.module.ts`)).toBeTruthy();
   });
 
   it('should add auth and user modules to core module', async () => {
-    const fileContent = tree
-      .read(`./packages/nx-nest/apps/${options.name}/src/app/core/core.module.ts`)
-      ?.toString('utf-8');
+    const fileContent = tree.read(`/apps/${options.name}/src/app/core/core.module.ts`)?.toString('utf-8');
     expect(fileContent).toContain('AuthModule');
     expect(fileContent).toContain('UserModule');
   });
@@ -61,9 +59,7 @@ describe('auth-jwt generator', () => {
     });
 
     it('should not include config imports', async () => {
-      const fileContent = tree
-        .read(`./packages/nx-nest/apps/${options.name}/src/app/core/auth/auth.module.ts`)
-        ?.toString('utf-8');
+      const fileContent = tree.read(`/apps/${options.name}/src/app/core/auth/auth.module.ts`)?.toString('utf-8');
       expect(fileContent).not.toContain('import config');
       expect(fileContent).not.toContain('secret: config.jwt.secret,');
       expect(fileContent).not.toContain('signOptions: { expiresIn: config.jwt.expiration },');
@@ -81,22 +77,18 @@ describe('auth-jwt generator', () => {
     }, 60000);
 
     it('should add JWT configuration if convict is present', async () => {
-      if (tree.exists(`./packages/nx-nest/apps/${options.name}/src/config.ts`)) {
-        const fileContent = tree.read(`./packages/nx-nest/apps/${options.name}/src/config.ts`)?.toString();
+      if (tree.exists(`/apps/${options.name}/src/config.ts`)) {
+        const fileContent = tree.read(`/apps/${options.name}/src/config.ts`)?.toString();
         expect(fileContent).toContain('jwt: {');
         expect(fileContent).toContain('secret: {');
         expect(fileContent).toContain('expiration: {');
 
-        const typesContent = tree
-          .read(`./packages/nx-nest/apps/${options.name}/src/app/app-config.ts`)
-          ?.toString('utf-8');
+        const typesContent = tree.read(`/apps/${options.name}/src/app/app-config.ts`)?.toString('utf-8');
         expect(typesContent).toContain('jwt');
       }
     });
     it('should include config imports', async () => {
-      const fileContent = tree
-        .read(`./packages/nx-nest/apps/${options.name}/src/app/core/auth/auth.module.ts`)
-        ?.toString('utf-8');
+      const fileContent = tree.read(`/apps/${options.name}/src/app/core/auth/auth.module.ts`)?.toString('utf-8');
       expect(fileContent).toContain('import config');
       expect(fileContent).toContain('secret: config.jwt.secret,');
       expect(fileContent).toContain('signOptions: { expiresIn: config.jwt.expiration },');

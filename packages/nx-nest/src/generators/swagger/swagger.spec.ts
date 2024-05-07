@@ -34,7 +34,7 @@ describe('swagger generator', () => {
     });
 
     it('should add Swagger configuration to main.ts', async () => {
-      const fileContent = tree.read(`./packages/nx-nest/apps/${options.name}/src/main.ts`)?.toString('utf-8');
+      const fileContent = tree.read(`/apps/${options.name}/src/main.ts`)?.toString('utf-8');
       expect(fileContent).toMatchSnapshot();
     });
 
@@ -56,13 +56,13 @@ describe('swagger generator', () => {
     }, 60000);
 
     it('should add Swagger properties to config.ts', async () => {
-      const filePath = `./packages/nx-nest/apps/${options.name}/src/config.ts`;
+      const filePath = `/apps/${options.name}/src/config.ts`;
       const fileContent = tree.read(filePath)?.toString('utf-8');
       expect(fileContent).toMatchSnapshot();
     });
 
     it('should add Swagger types at app-config', async () => {
-      const filePath = `./packages/nx-nest/apps/${options.name}/src/app/app-config.ts`;
+      const filePath = `/apps/${options.name}/src/app/app-config.ts`;
       const fileContent = tree.read(filePath)?.toString('utf-8');
       expect(fileContent).toMatchSnapshot();
     });
