@@ -1,6 +1,6 @@
 {
   "name": "@devon4ts/nx-nest",
-  "version": "6.0.0-2",
+  "version": "6.0.0-3",
   "description": "NX plugin for NestJS using devon4ts",
   "scripts": {
     "build": "nx build",

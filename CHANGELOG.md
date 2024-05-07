@@ -1,3 +1,7 @@
+## 6.0.0-2 (2024-05-07)
+
+This was a version bump only, there were no code changes.
+
 ## 6.0.0-1 (2024-03-18)
 
 ### 🚀 Features
