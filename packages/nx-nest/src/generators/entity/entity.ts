@@ -1,3 +1,4 @@
+import '@nestjs/schematics';
 import {
   formatFiles,
   generateFiles,
