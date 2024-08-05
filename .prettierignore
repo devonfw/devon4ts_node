@@ -10,3 +10,5 @@
 *.template
 /templates
 pnpm-lock.yaml
+
+/.nx/workspace-data

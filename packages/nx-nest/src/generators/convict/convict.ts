@@ -8,7 +8,6 @@ import {
   runTasksInSerial,
   Tree,
 } from '@nx/devkit';
-import type { Linter } from '@nx/eslint';
 import { normalizeOptions as normalizeLibraryOptions } from '@nx/nest/src/generators/library/lib/normalize-options';
 import { libraryGenerator } from '@nx/nest/src/generators/library/library';
 import { NormalizedOptions } from '@nx/nest/src/generators/library/schema';
@@ -30,7 +29,7 @@ export async function convictGenerator(tree: Tree, options: ConvictGeneratorSche
     directory: 'libs/shared/config',
     importPath: `@${getNpmScope(tree)}/shared/config`,
     projectNameAndRootFormat: 'as-provided',
-    linter: 'eslint' as Linter,
+    linter: 'eslint' as any,
     strict: true,
     unitTestRunner: 'jest',
     testEnvironment: 'node',

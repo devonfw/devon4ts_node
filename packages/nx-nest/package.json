@@ -2,12 +2,6 @@
   "name": "@devon4ts/nx-nest",
   "version": "6.0.0-3",
   "description": "NX plugin for NestJS using devon4ts",
-  "scripts": {
-    "build": "nx build",
-    "format": "nx format:write",
-    "lint": "nx lint",
-    "test": "nx test"
-  },
   "keywords": [
     "nx plugin",
     "nestjs",
@@ -34,9 +28,8 @@
   "license": "Apache-2.0",
   "generators": "./generators.json",
   "dependencies": {
-    "@nx/devkit": "19.0.0",
-    "@nx/eslint": "19.0.0",
-    "@nx/nest": "19.0.0",
+    "@nx/devkit": "19.5.6",
+    "@nx/nest": "19.5.6",
     "@swc/helpers": "~0.5.2",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",

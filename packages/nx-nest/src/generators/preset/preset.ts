@@ -1,5 +1,4 @@
 import { GeneratorCallback, Tree } from '@nx/devkit';
-import type { Linter } from '@nx/eslint';
 import { join } from 'path';
 import devon4tsApplicationGenerator from '../application/application';
 import { PresetGeneratorSchema } from './schema';
@@ -9,7 +8,7 @@ export async function presetGenerator(tree: Tree, options: PresetGeneratorSchema
     name: options.name,
     directory: join('apps', options.name),
     projectNameAndRootFormat: 'as-provided',
-    linter: 'eslint' as Linter,
+    linter: 'eslint' as any,
     e2eTestRunner: 'jest',
     strict: true,
     unitTestRunner: 'jest',

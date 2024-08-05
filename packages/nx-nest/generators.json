@@ -49,6 +49,11 @@
       "description": "devon4ts nestjs workspace preset",
       "x-use-standalone-layout": true,
       "hidden": true
+    },
+    "use-case": {
+      "factory": "./src/generators/use-case/generator",
+      "schema": "./src/generators/use-case/schema.json",
+      "description": "Create a Use Case"
     }
   }
 }
