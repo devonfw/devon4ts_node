@@ -1,4 +1,5 @@
 import { DynamicModule, Module } from '@nestjs/common';
+import 'nodemailer';
 import * as nodemailer from 'nodemailer';
 import { MAILER_OPTIONS_PROVIDER_NAME, MAILER_TRANSPORT_PROVIDER_NAME } from './mailer.constants';
 import { MailerService } from './mailer.service';

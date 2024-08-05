@@ -27,10 +27,10 @@
   },
   "homepage": "https://github.com/devonfw/devon4ts",
   "dependencies": {
-    "@swc/helpers": "~0.5.2",
+    "@swc/helpers": "~0.5.12",
     "chalk": "^4.1.2",
     "logfmt": "^1.4.0",
-    "logform": "^2.6.0",
+    "logform": "^2.6.1",
     "triple-beam": "1.4.1"
   },
   "devDependencies": {

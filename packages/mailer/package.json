@@ -30,12 +30,12 @@
   "main": "./src/index.js",
   "typings": "./src/index.d.ts",
   "dependencies": {
-    "@swc/helpers": "~0.5.2",
+    "@swc/helpers": "~0.5.12",
     "fs-extra": "^11.2.0",
-    "nodemailer": "^6.7.5"
+    "nodemailer": "^6.9.14"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.0",
+    "@nestjs/common": ">=10.0.0",
     "handlebars": "^4.0.0"
   }
 }

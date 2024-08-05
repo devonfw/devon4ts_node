@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const endpoint = 'https://registry.npmjs.org/';
-const packageJson = JSON.parse(await fs.readFile(path.join(__dirname, '../package.json')));
+const packageJson = JSON.parse(await fs.readFile(path.join(__dirname, '../../package.json')));
 
 function getVersionFromPackageJson(name) {
   return packageJson.dependencies[name] || packageJson.devDependencies[name];
@@ -40,7 +40,9 @@ const tsProject = new Project({
   skipLoadingLibFiles: true,
 });
 
-const file = tsProject.addSourceFileAtPath(path.join(__dirname, '../packages/nx-nest/src/lib/packagesVersion.ts'));
+const file = tsProject.addSourceFileAtPath(
+  path.join(__dirname, '../../packages/nx-nest/src/generators/packagesVersion.ts'),
+);
 
 const packagesVersion = file.getVariableStatement('packagesVersion').getDeclarations()[0].getInitializer();
 
@@ -48,9 +50,9 @@ for (const e of packagesVersion.getProperties()) {
   const init = e.getInitializer();
 
   const newValue = `'${await getLatestPackageVersion(
-    init.getProperty('packageName').getStructure().initializer.replaceAll("'", ''),
+    init.getProperty('name').getStructure().initializer.replaceAll("'", ''),
   )}'`;
-  init.getProperty('packageVersion').set({
+  init.getProperty('version').set({
     initializer: newValue,
   });
 

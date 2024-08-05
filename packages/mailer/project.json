@@ -7,6 +7,7 @@
     "build": {
       "executor": "@nx/js:swc",
       "outputs": ["{options.outputPath}"],
+      "inputs": ["packages/mailer/src/lib/**/*.ts", "packages/mailer/src/index.ts", "package.json"],
       "options": {
         "outputPath": "dist/packages/mailer",
         "main": "packages/mailer/src/index.ts",
