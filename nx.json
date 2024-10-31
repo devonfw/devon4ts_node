@@ -35,5 +35,6 @@
       }
     }
   ],
-  "defaultBase": "develop"
+  "defaultBase": "develop",
+  "useLegacyCache": true
 }
