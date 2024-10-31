@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`use-case generator should generate the specs in the same folder if specSameFolder is true 1`] = `
+"import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class GenerateTest {
+  execute(): void {
+    throw new Error('Not implemented!');
+  }
+}
+"
+`;
+
+exports[`use-case generator should generate the specs in the same folder if specSameFolder is true 2`] = `
+"import { Test, TestingModule } from '@nestjs/testing';
+import { GenerateTest } from '/generate-test.use-case';
+
+describe('GenerateTest', () => {
+  let useCase: GenerateTest;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [GenerateTest],
+    }).compile();
+
+    useCase = module.get<GenerateTest>(GenerateTest);
+  });
+
+  it('should be defined', () => {
+    expect(useCase).toBeDefined();
+  });
+});
+"
+`;
+
+exports[`use-case generator should generate the specs in the same folder if specSameFolder is true 3`] = `
+"import { Module } from '@nestjs/common';
+import { GenerateTest } from './application/generate-test.use-case';
+
+@Module({
+  providers: [GenerateTest],
+})
+export class TestModuleModule {}
+"
+`;
+
+exports[`use-case generator should generate the use-case in the application layer and add it to app.module 1`] = `
+"import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class GenerateTest {
+  execute(): void {
+    throw new Error('Not implemented!');
+  }
+}
+"
+`;
+
+exports[`use-case generator should generate the use-case in the application layer and add it to app.module 2`] = `
+"import { Module } from '@nestjs/common';
+import { CoreModule } from './core/core.module';
+import { GenerateTest } from './application/generate-test.use-case';
+
+@Module({
+  imports: [CoreModule],
+  controllers: [],
+  providers: [GenerateTest],
+})
+export class AppModule {}
+"
+`;
+
+exports[`use-case generator should generate the use-case in the application layer of the specified module 1`] = `
+"import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class GenerateTest {
+  execute(): void {
+    throw new Error('Not implemented!');
+  }
+}
+"
+`;
+
+exports[`use-case generator should generate the use-case in the application layer of the specified module 2`] = `
+"import { Test, TestingModule } from '@nestjs/testing';
+import { GenerateTest } from '../../../app/test-module/application/generate-test.use-case';
+
+describe('GenerateTest', () => {
+  let useCase: GenerateTest;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [GenerateTest],
+    }).compile();
+
+    useCase = module.get<GenerateTest>(GenerateTest);
+  });
+
+  it('should be defined', () => {
+    expect(useCase).toBeDefined();
+  });
+});
+"
+`;
+
+exports[`use-case generator should generate the use-case in the application layer of the specified module 3`] = `
+"import { Module } from '@nestjs/common';
+import { GenerateTest } from './application/generate-test.use-case';
+
+@Module({
+  providers: [GenerateTest],
+})
+export class TestModuleModule {}
+"
+`;

@@ -44,12 +44,11 @@ export async function entityGenerator(tree: Tree, options: EntityGeneratorSchema
 
 function addEntityToModule(tree: Tree, modulePath: string, entityName: string): void {
   const moduleFile = findModuleFile(tree, modulePath);
-
   if (!moduleFile) {
     return;
   }
 
-  const contentBuilder = new ASTFileBuilder(tree.read(path.join(modulePath, moduleFile))!.toString());
+  const contentBuilder = new ASTFileBuilder(tree.read(moduleFile)!.toString());
   const moduleName = contentBuilder.getModuleClassName();
   const entityNames = names(entityName);
 
@@ -62,7 +61,7 @@ function addEntityToModule(tree: Tree, modulePath: string, entityName: string): 
     .addImports('TypeOrmModule', '@nestjs/typeorm')
     .addTypeormFeatureToModule(moduleName, entityNames.className);
 
-  tree.write(path.join(modulePath, moduleFile), contentBuilder.build());
+  tree.write(moduleFile, contentBuilder.build());
 }
 
 export default entityGenerator;

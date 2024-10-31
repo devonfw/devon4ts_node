@@ -13,7 +13,12 @@ import { libraryGenerator } from '@nx/nest/src/generators/library/library';
 import { NormalizedOptions } from '@nx/nest/src/generators/library/schema';
 import * as path from 'path';
 import { ASTFileBuilder } from '../../utils/ast-file-builder';
-import { ensureProjectIsAnApplication, getNpmScope, updateJestConfig } from '../../utils/tree-utils';
+import {
+  ensureProjectIsAnApplication,
+  getNpmScope,
+  getRelativePathToWorkspaceRoot,
+  updateJestConfig,
+} from '../../utils/tree-utils';
 import { packagesVersion } from '../packagesVersion';
 import { ConvictGeneratorSchema } from './schema';
 
@@ -26,7 +31,7 @@ export async function convictGenerator(tree: Tree, options: ConvictGeneratorSche
   const projectRoot = appConfig.root;
   const libraryOptions = await normalizeLibraryOptions(tree, {
     name: 'shared-config',
-    directory: 'libs/shared/config',
+    directory: path.join(getRelativePathToWorkspaceRoot(), 'libs/shared/config'),
     importPath: `@${getNpmScope(tree)}/shared/config`,
     projectNameAndRootFormat: 'as-provided',
     linter: 'eslint' as any,
@@ -35,6 +40,7 @@ export async function convictGenerator(tree: Tree, options: ConvictGeneratorSche
     testEnvironment: 'node',
     skipFormat: true,
   });
+
   const libTasks = await generateConfigLibrary(tree, libraryOptions);
   const packageTask = updatePackageJson(tree);
 

@@ -18,7 +18,7 @@ import { libraryGenerator } from '@nx/nest/src/generators/library/library';
 import { NormalizedOptions } from '@nx/nest/src/generators/library/schema';
 import * as path from 'path';
 import { ASTFileBuilder } from '../../utils/ast-file-builder';
-import { getNpmScope, updateJestConfig } from '../../utils/tree-utils';
+import { getNpmScope, getRelativePathToWorkspaceRoot, updateJestConfig } from '../../utils/tree-utils';
 import { packagesVersion } from '../packagesVersion';
 
 const prettierConfiguration = {
@@ -47,7 +47,7 @@ export async function applicationGenerator(
     projectNameAndRootFormat: 'as-provided',
     strict: true,
     importPath: `@${npmScope}/shared/logger`,
-    directory: 'libs/shared/logger',
+    directory: path.join(getRelativePathToWorkspaceRoot(), 'libs/shared/logger'),
     skipFormat: true,
     skipPackageJson: true,
     testEnvironment: 'node',

@@ -1,0 +1,18 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { <%= className %> } from '<%= relativeImport %>/<%= name %>.use-case';
+
+describe('<%= className %>', () => {
+  let useCase: <%= className %>;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [<%= className %>],
+    }).compile();
+
+    useCase = module.get<<%= className %>>(<%= className %>);
+  });
+
+  it('should be defined', () => {
+    expect(useCase).toBeDefined();
+  });
+});
