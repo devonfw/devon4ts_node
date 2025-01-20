@@ -30,7 +30,7 @@
     "@swc/helpers": "~0.5.12",
     "chalk": "^4.1.2",
     "logfmt": "^1.4.0",
-    "logform": "^2.6.1",
+    "logform": "^2.7.0",
     "triple-beam": "1.4.1"
   },
   "devDependencies": {

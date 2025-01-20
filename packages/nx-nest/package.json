@@ -28,17 +28,17 @@
   "license": "Apache-2.0",
   "generators": "./generators.json",
   "dependencies": {
-    "@nestjs/schematics": "^10.1.3",
-    "@nx/devkit": "20.0.6",
-    "@nx/nest": "20.0.6",
+    "@nestjs/schematics": "^10.1.4",
+    "@nx/devkit": "20.3.2",
+    "@nx/nest": "20.3.2",
     "@swc/helpers": "~0.5.12",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
-    "ts-morph": "^24.0.0"
+    "ts-morph": "^25.0.0"
   },
   "gitHead": "1f351bcc0fbad70f9c25fa73a398a538ca0c8e55",
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
-    "@types/lodash": "^4.17.7"
+    "@types/lodash": "^4.17.14"
   }
 }
