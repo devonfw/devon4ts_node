@@ -12,7 +12,6 @@ describe('Security Generator', () => {
     tree = createTreeWithEmptyWorkspace();
     await applicationGenerator(tree, {
       name: options.projectName,
-      projectNameAndRootFormat: 'as-provided',
       directory: 'apps/test',
     });
     await securityGenerator(tree, options);

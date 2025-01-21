@@ -1,6 +1,8 @@
 const { FlatCompat } = require('@eslint/eslintrc');
 const js = require('@eslint/js');
-const baseConfig = require('./eslint.base.config.cjs');
+const nxEslintPlugin = require('@nx/eslint-plugin');
+const eslintPluginPrettier = require('eslint-plugin-prettier');
+const eslintConfigPrettier = require('eslint-config-prettier');
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
@@ -11,7 +13,12 @@ module.exports = [
   {
     ignores: ['**/dist', 'src/lib/**/files/**/*', '**/src/lib/**/files/**/*', '**/*.d.ts', '**/*.d.ts'],
   },
-  ...baseConfig,
+  {
+    plugins: {
+      '@nx': nxEslintPlugin,
+      'prettier': eslintPluginPrettier,
+    },
+  },
   {
     files: ['**/*.json'],
     // Override or add rules here
@@ -38,16 +45,41 @@ module.exports = [
       ],
     },
   },
-  {
-    files: ['**/*.ts', '**/*.tsx'],
-    // Override or add rules here
-    rules: {},
-  },
-  {
-    files: ['**/*.js', '**/*.jsx'],
-    // Override or add rules here
-    rules: {},
-  },
+  ...compat
+    .config({
+      extends: ['plugin:@nx/typescript'],
+    })
+    .map(config => ({
+      ...config,
+      files: ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'],
+      rules: {
+        ...config.rules,
+        'no-console': 'error',
+        '@typescript-eslint/explicit-function-return-type': 'error',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        'prettier/prettier': 'error',
+        'sort-imports': [
+          'error',
+          {
+            allowSeparatedGroups: false,
+            ignoreDeclarationSort: true,
+            ignoreMemberSort: true,
+          },
+        ],
+      },
+    })),
+  ...compat
+    .config({
+      extends: ['plugin:@nx/javascript'],
+    })
+    .map(config => ({
+      ...config,
+      files: ['**/*.js', '**/*.jsx', '**/*.cjs', '**/*.mjs'],
+      rules: {
+        ...config.rules,
+      },
+    })),
   ...compat
     .config({
       env: {
@@ -61,4 +93,5 @@ module.exports = [
         ...config.rules,
       },
     })),
+  eslintConfigPrettier,
 ];

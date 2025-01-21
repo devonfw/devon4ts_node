@@ -7,7 +7,6 @@ export async function presetGenerator(tree: Tree, options: PresetGeneratorSchema
   const tasks = await devon4tsApplicationGenerator(tree, {
     name: options.name,
     directory: join('apps', options.name),
-    projectNameAndRootFormat: 'as-provided',
     linter: 'eslint' as any,
     e2eTestRunner: 'jest',
     strict: true,

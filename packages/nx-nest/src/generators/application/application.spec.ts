@@ -8,7 +8,7 @@ describe('application generator', () => {
   const options: ApplicationGeneratorOptions = {
     name: 'something',
     directory: 'apps/something',
-    projectNameAndRootFormat: 'as-provided',
+    // projectNameAndRootFormat: 'as-provided',
   };
   let appConfig: ProjectConfiguration;
   let loggerConfig: ProjectConfiguration;
@@ -16,7 +16,7 @@ describe('application generator', () => {
   beforeAll(async () => {
     tree = createTreeWithEmptyWorkspace();
     await applicationGenerator(tree, options);
-    appConfig = readProjectConfiguration(tree, options.name);
+    appConfig = readProjectConfiguration(tree, options.name!);
     loggerConfig = readProjectConfiguration(tree, 'shared-logger');
   }, 60000);
 
@@ -82,7 +82,7 @@ describe('application generator', () => {
     });
 
     it('should update the ESLint global configuration', () => {
-      expect(tree.read('/.eslintrc.json')?.toString('utf-8')).toMatchSnapshot();
+      expect(tree.read('/eslint.config.cjs')?.toString('utf-8')).toMatchSnapshot();
     });
 
     it('should update the global prettier configuration', () => {

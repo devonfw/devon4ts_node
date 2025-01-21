@@ -18,7 +18,7 @@ function getVersionFromPackageJson(name) {
 }
 
 async function getVersionFromNpmRegistry(name) {
-  let resp = await fetch(endpoint + encodeURI(name));
+  const resp = await fetch(endpoint + encodeURI(name));
   if (!resp.ok) {
     return undefined;
   }
@@ -28,8 +28,6 @@ async function getVersionFromNpmRegistry(name) {
 async function getLatestPackageVersion(name) {
   return getVersionFromPackageJson(name) || (await getVersionFromNpmRegistry(name));
 }
-
-// console.log(await getLatestPackageVersion('pg'));
 
 const tsProject = new Project({
   manipulationSettings: {

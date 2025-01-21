@@ -38,20 +38,25 @@ export async function applicationGenerator(
   tree: Tree,
   options: ApplicationGeneratorOptions,
 ): Promise<GeneratorCallback> {
-  const normalizedOptions = await normalizeOptions(tree, { ...options, strict: true, skipFormat: true });
+  const normalizedOptions = await normalizeOptions(tree, {
+    ...options,
+    strict: true,
+    skipFormat: true,
+    addPlugin: false,
+  });
   const npmScope = getNpmScope(tree) ?? '';
 
   const libraryOptions = await normalizeLibraryOptions(tree, {
     ...normalizedOptions,
     name: 'shared-logger',
-    projectNameAndRootFormat: 'as-provided',
+    // projectNameAndRootFormat: 'as-provided',
     strict: true,
     importPath: `@${npmScope}/shared/logger`,
     directory: path.join(getRelativePathToWorkspaceRoot(), 'libs/shared/logger'),
     skipFormat: true,
     skipPackageJson: true,
     testEnvironment: 'node',
-    addPlugin: true,
+    addPlugin: false,
   });
 
   const appTasks = await nestApplicationGenerator(tree, normalizedOptions);

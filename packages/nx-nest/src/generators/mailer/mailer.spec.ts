@@ -13,7 +13,6 @@ describe('mailer generator', () => {
       tree = createTreeWithEmptyWorkspace();
       await applicationGenerator(tree, {
         name: options.projectName,
-        projectNameAndRootFormat: 'as-provided',
         directory: 'apps/test',
       });
       await mailerGenerator(tree, options);
@@ -48,7 +47,6 @@ describe('mailer generator', () => {
       tree = createTreeWithEmptyWorkspace();
       await applicationGenerator(tree, {
         name: options.projectName,
-        projectNameAndRootFormat: 'as-provided',
         directory: 'apps/test',
       });
       tree.write(

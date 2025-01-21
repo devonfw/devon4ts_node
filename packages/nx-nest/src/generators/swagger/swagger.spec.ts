@@ -9,7 +9,6 @@ describe('swagger generator', () => {
   let tree: Tree;
   const options: ApplicationGeneratorOptions = {
     name: 'test',
-    projectNameAndRootFormat: 'as-provided',
     directory: 'apps/test',
   };
 
@@ -25,7 +24,7 @@ describe('swagger generator', () => {
 
   describe('common swagger generator tasks', () => {
     beforeAll(async () => {
-      await swaggerGenerator(tree, { projectName: options.name });
+      await swaggerGenerator(tree, { projectName: options.name! });
     }, 60000);
 
     it('should add dependencies to package.json', async () => {
@@ -51,8 +50,8 @@ describe('swagger generator', () => {
 
   describe('swagger generator with convict', () => {
     beforeAll(async () => {
-      await convictGenerator(tree, { projectName: options.name });
-      await swaggerGenerator(tree, { projectName: options.name });
+      await convictGenerator(tree, { projectName: options.name! });
+      await swaggerGenerator(tree, { projectName: options.name! });
     }, 60000);
 
     it('should add Swagger properties to config.ts', async () => {

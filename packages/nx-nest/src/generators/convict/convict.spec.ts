@@ -8,7 +8,6 @@ describe('convict generator', () => {
   let tree: Tree;
   const options: ApplicationGeneratorOptions = {
     name: 'test',
-    projectNameAndRootFormat: 'as-provided',
     directory: 'apps/test',
     skipFormat: true,
     skipPackageJson: true,
@@ -21,12 +20,12 @@ describe('convict generator', () => {
     tree = createTreeWithEmptyWorkspace();
     await applicationGenerator(tree, options);
     await convictGenerator(tree, {
-      projectName: options.name,
+      projectName: options.name!,
     });
     await convictGenerator(tree, {
-      projectName: options.name,
+      projectName: options.name!,
     });
-    appConfig = readProjectConfiguration(tree, options.name);
+    appConfig = readProjectConfiguration(tree, options.name!);
     loggerConfig = readProjectConfiguration(tree, 'shared-logger');
     convictConfig = readProjectConfiguration(tree, 'shared-config');
   }, 60000);

@@ -13,7 +13,6 @@ describe('entity generator', () => {
     let tree: Tree;
     const options: ApplicationGeneratorOptions = {
       name: 'test',
-      projectNameAndRootFormat: 'as-provided',
       directory: 'apps/test',
     };
     let config: ProjectConfiguration;
@@ -25,30 +24,29 @@ describe('entity generator', () => {
 
     it('should generate the entity', async () => {
       expect(config).toBeDefined();
-      await entityGenerator(tree, { name: 'testo', projectName: options.name });
+      await entityGenerator(tree, { name: 'testo', projectName: options.name! });
       expect(tree.exists(join(config.root, 'src/app/testo.entity.ts'))).toBeTruthy();
       expect(tree.read(join(config.root, 'src/app/testo.entity.ts'))?.toString('utf-8')).toMatchSnapshot();
     });
 
     it('should update the library module if no other module is specified', async () => {
-      await entityGenerator(tree, { name: 'testo', projectName: options.name });
+      await entityGenerator(tree, { name: 'testo', projectName: options.name! });
       expect(tree.exists(join(config.root, 'src/app/app.module.ts'))).toBeTruthy();
       expect(tree.read(join(config.root, 'src/app/app.module.ts'))?.toString('utf-8')).toMatchSnapshot();
     });
 
     it('should update the specified module', async () => {
       await moduleGenerator(tree, {
-        name: 'modulero',
-        directory: 'apps/test/src/app/modulero',
-        nameAndDirectoryFormat: 'as-provided',
+        module: 'modulero',
+        path: 'apps/test/src/app/modulero/modulero',
       });
-      await entityGenerator(tree, { name: 'testo', projectName: options.name, module: 'modulero' });
-      expect(tree.read(join(config.root, 'src/lib/modulero/modulero.module.ts'))?.toString('utf-8')).toMatchSnapshot();
+      await entityGenerator(tree, { name: 'testo', projectName: options.name!, module: 'modulero' });
+      expect(tree.read(join(config.root, 'src/app/modulero/modulero.module.ts'))?.toString('utf-8')).toMatchSnapshot();
     });
 
     it('should throw an error if the specified module doesnt exists', async () => {
       await expect(
-        entityGenerator(tree, { name: 'testo', projectName: options.name, module: 'no-exists' }),
+        entityGenerator(tree, { name: 'testo', projectName: options.name!, module: 'no-exists' }),
       ).rejects.toThrow(Error);
     });
   });
@@ -57,7 +55,6 @@ describe('entity generator', () => {
     let tree: Tree;
     const options: LibraryGeneratorOptions = {
       name: 'test',
-      projectNameAndRootFormat: 'as-provided',
       directory: 'apps/test',
     };
     let config: ProjectConfiguration;
@@ -69,29 +66,28 @@ describe('entity generator', () => {
 
     it('should generate the entity', async () => {
       expect(config).toBeDefined();
-      await entityGenerator(tree, { name: 'testo', projectName: options.name });
+      await entityGenerator(tree, { name: 'testo', projectName: options.name! });
       expect(tree.exists(join(config.root, 'src/lib/testo.entity.ts'))).toBeTruthy();
       expect(tree.read(join(config.root, 'src/lib/testo.entity.ts'))?.toString('utf-8')).toMatchSnapshot();
     });
 
     it('should update the library module if no other module is specified', async () => {
-      await entityGenerator(tree, { name: 'testo', projectName: options.name });
+      await entityGenerator(tree, { name: 'testo', projectName: options.name! });
       expect(tree.read(join(config.root, 'src/lib/test.module.ts'))?.toString('utf-8')).toMatchSnapshot();
     });
 
     it('should update the specified module', async () => {
       await moduleGenerator(tree, {
-        name: 'modulero',
-        directory: 'apps/test/src/lib/modulero',
-        nameAndDirectoryFormat: 'as-provided',
+        module: 'modulero',
+        path: 'apps/test/src/lib/modulero/modulero',
       });
-      await entityGenerator(tree, { name: 'testo', projectName: options.name, module: 'modulero' });
+      await entityGenerator(tree, { name: 'testo', projectName: options.name!, module: 'modulero' });
       expect(tree.read(join(config.root, 'src/lib/modulero/modulero.module.ts'))?.toString('utf-8')).toMatchSnapshot();
     });
 
     it('should throw an error if the specified module doesnt exists', async () => {
       await expect(
-        entityGenerator(tree, { name: 'testo', projectName: options.name, module: 'no-exists' }),
+        entityGenerator(tree, { name: 'testo', projectName: options.name!, module: 'no-exists' }),
       ).rejects.toThrow(Error);
     });
   });

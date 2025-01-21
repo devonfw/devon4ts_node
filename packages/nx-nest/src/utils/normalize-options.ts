@@ -13,9 +13,13 @@ export async function normalizeOptions(
 ): Promise<NameAndDirectoryOptions & { modulePath?: string }> {
   const optionsNormalized = await determineArtifactNameAndDirectoryOptions(tree, {
     ...options,
-    name: names(options.name).fileName,
-    directory: options.directory && names(options.directory).fileName,
+    name: names(options.name!).fileName,
+    // path: options.path && names(options.path).fileName,
+    path: options.path && join(options.path, names(basename(options.path)).fileName),
   });
+
+  optionsNormalized.fileName = `${optionsNormalized.artifactName}${options.suffix ? '.' + options.suffix : ''}`;
+  optionsNormalized.filePath = join(dirname(optionsNormalized.filePath), basename(optionsNormalized.fileName));
 
   if (options.skipModule) {
     return optionsNormalized;

@@ -10,7 +10,7 @@ describe('auth-jwt generator', () => {
 
   beforeAll(async () => {
     tree = createTreeWithEmptyWorkspace();
-    await applicationGenerator(tree, { ...options, projectNameAndRootFormat: 'as-provided' });
+    await applicationGenerator(tree, options);
     await authJwtGenerator(tree, { projectName: options.name });
     jest.clearAllMocks();
   }, 60000);

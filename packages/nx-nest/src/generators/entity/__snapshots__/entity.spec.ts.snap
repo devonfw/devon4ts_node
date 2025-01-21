@@ -35,7 +35,17 @@ export class AppModule {}
 "
 `;
 
-exports[`entity generator application should update the specified module 1`] = `undefined`;
+exports[`entity generator application should update the specified module 1`] = `
+"import { Module } from '@nestjs/common';
+import { Testo } from './testo.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+@Module({
+  imports: [TypeOrmModule.forFeature([Testo])],
+})
+export class ModuleroModule {}
+"
+`;
 
 exports[`entity generator library should generate the entity 1`] = `
 "import {

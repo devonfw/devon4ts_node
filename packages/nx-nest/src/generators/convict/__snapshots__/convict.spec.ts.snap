@@ -32,7 +32,6 @@ exports[`convict generator application files should add convict configuration to
 
 import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-
 import { AppModule } from './app/app.module';
 import { WinstonLogger } from '@proj/shared/logger';
 import { CONFIG_PROVIDER, BaseConfig } from '@proj/shared/config';

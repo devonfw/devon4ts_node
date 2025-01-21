@@ -1,7 +1,6 @@
 export interface UseCaseGeneratorSchema {
   name: string;
-  nameAndDirectoryFormat?: 'as-provided' | 'derived';
-  directory?: string;
+  path: string;
   skipFormat?: boolean;
   specSameFolder?: boolean;
 }

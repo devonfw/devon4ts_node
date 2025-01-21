@@ -8,7 +8,6 @@ exports[`swagger generator common swagger generator tasks should add Swagger con
 
 import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-
 import { AppModule } from './app/app.module';
 import { WinstonLogger } from '@proj/shared/logger';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';

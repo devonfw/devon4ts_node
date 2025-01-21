@@ -33,12 +33,12 @@ export async function convictGenerator(tree: Tree, options: ConvictGeneratorSche
     name: 'shared-config',
     directory: path.join(getRelativePathToWorkspaceRoot(), 'libs/shared/config'),
     importPath: `@${getNpmScope(tree)}/shared/config`,
-    projectNameAndRootFormat: 'as-provided',
     linter: 'eslint' as any,
     strict: true,
     unitTestRunner: 'jest',
     testEnvironment: 'node',
     skipFormat: true,
+    addPlugin: false,
   });
 
   const libTasks = await generateConfigLibrary(tree, libraryOptions);

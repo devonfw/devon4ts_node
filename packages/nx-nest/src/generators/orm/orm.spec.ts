@@ -14,7 +14,6 @@ describe('init-orm generator', () => {
       tree = createTreeWithEmptyWorkspace();
       await applicationGenerator(tree, {
         name: options.projectName,
-        projectNameAndRootFormat: 'as-provided',
         directory: 'apps/test',
       });
       await initOrmGenerator(tree, options);
@@ -35,7 +34,6 @@ describe('init-orm generator', () => {
         tree = createTreeWithEmptyWorkspace();
         await applicationGenerator(tree, {
           name: options.projectName,
-          projectNameAndRootFormat: 'as-provided',
           directory: 'apps/test',
         });
       }, 60000);
@@ -118,7 +116,6 @@ describe('init-orm generator', () => {
         tree = createTreeWithEmptyWorkspace();
         await applicationGenerator(tree, {
           name: options.projectName,
-          projectNameAndRootFormat: 'as-provided',
           directory: 'apps/test',
         });
         await convictGenerator(tree, { projectName: options.projectName });
@@ -196,7 +193,6 @@ describe('init-orm generator', () => {
       tree = createTreeWithEmptyWorkspace();
       await applicationGenerator(tree, {
         name: options.projectName,
-        projectNameAndRootFormat: 'as-provided',
         directory: 'apps/test',
       });
     }, 60000);

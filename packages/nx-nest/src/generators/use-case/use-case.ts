@@ -8,9 +8,6 @@ import { UseCaseGeneratorSchema } from './schema';
 
 export async function useCaseGenerator(tree: Tree, options: UseCaseGeneratorSchema): Promise<void> {
   const optionsNormalized = await normalizeOptions(tree, {
-    artifactType: 'use-case',
-    callingGenerator: '@devon4ts/nx-nest:use-case',
-    nameAndDirectoryFormat: 'as-provided',
     suffix: 'use-case',
     layer: 'application',
     ...options,

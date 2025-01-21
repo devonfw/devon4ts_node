@@ -8,7 +8,6 @@ exports[`Security Generator should add CORS and helmet to main.ts 1`] = `
 
 import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-
 import { AppModule } from './app/app.module';
 import { WinstonLogger } from '@proj/shared/logger';
 import helmet from 'helmet';
