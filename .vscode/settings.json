@@ -22,5 +22,8 @@
       "rootPath": "packages/mailer",
       "jestCommandLine": "nx run mailer:test"
     }
-  ]
+  ],
+  "debug.javascript.defaultRuntimeExecutable": {
+    "pwa-node": "/mise/shims/node"
+  }
 }
